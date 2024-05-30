@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace AP1_GSB_DINH
 {
-    public partial class Form1 : Form
+    public partial class AddFrais : Form
     {
-        public Form1()
+        public AddFrais()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
