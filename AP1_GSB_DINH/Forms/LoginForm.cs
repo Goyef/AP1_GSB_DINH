@@ -21,7 +21,7 @@ namespace AP1_GSB_DINH
             InitializeComponent();
         }
 
-        private DataBase db = new DataBase();
+        private Service db = new Service();
 
         private void Exit(object sender, EventArgs e)
         {
@@ -39,7 +39,6 @@ namespace AP1_GSB_DINH
                 if (conn != null)
                 {
                     MySqlCommand cmd = new MySqlCommand("SELECT utilisateur.id_utilisateur FROM `utilisateur` WHERE mot_de_passe = '"+mdp+"' AND identifiant = '"+identifiant+"';", conn);
-                    conn.Open();
                     int dataId = Convert.ToInt32(cmd.ExecuteScalar());
                     if (dataId == 0)
                     {
@@ -54,6 +53,8 @@ namespace AP1_GSB_DINH
                     conn.Close();
 
                     Redirection(role, dataId);
+
+
                     }
                     else
                         {
@@ -67,15 +68,20 @@ namespace AP1_GSB_DINH
             switch (role)
             {
                 case "visiteur":
-                    pageVisiteur newForm = new pageVisiteur(dataId);
+                    VisiteurForm newForm = new VisiteurForm(dataId);
                     this.Hide();
                     newForm.ShowDialog();
+                    this.Show();
                     break;
                 case "comptable":
-
+                    /*ComptableForm newForm = new ComptableForm(dataId);
+                    newForm.ShowDialog();*/
+                    this.Show();
                     break;
             }
         }
+
+     
     }
     
   }
