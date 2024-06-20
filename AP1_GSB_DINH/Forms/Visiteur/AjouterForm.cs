@@ -24,13 +24,19 @@ namespace AP1_GSB_DINH
 
         private void AjouterForm_Load(object sender, EventArgs e)
         {
-            string datemy = db.DateFiche();
+            ShowData();
 
+        }
+
+
+        private void ShowData()
+        {
+            string datemy = db.DateFiche();
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
                 {
-              
+
                     using (MySqlCommand cmd = new MySqlCommand("SELECT ff.date, gt.type, ff.quantite, ff.total FROM fiche_frais f LEFT JOIN frais_forfait ff ON f.id_fiche = ff.id_fiche LEFT JOIN" +
                         " grille_tarif gt ON ff.id_tarif = gt.id_tarif LEFT JOIN utilisateur ON utilisateur.id_utilisateur = f.id_utilisateur WHERE f.id_utilisateur = @idUser AND f.annee_mois = @datemy", conn))
                     {
@@ -44,9 +50,10 @@ namespace AP1_GSB_DINH
                             dataGridView1.DataSource = table;
                         }
 
+
                     }
-                    using (MySqlCommand command = new MySqlCommand("SELECT hf.date, hf.montant, hf.nom FROM fiche_frais f LEFT JOIN frais_hors_forfait hf ON f.id_fiche = hf.id_fiche" 
-                                +" LEFT JOIN utilisateur ON utilisateur.id_utilisateur = f.id_utilisateur WHERE f.id_utilisateur = @idUser AND f.annee_mois = @datemy", conn))
+                    using (MySqlCommand command = new MySqlCommand("SELECT hf.date, hf.nom, hf.montant FROM fiche_frais f LEFT JOIN frais_hors_forfait hf ON f.id_fiche = hf.id_fiche"
+                                + " LEFT JOIN utilisateur ON utilisateur.id_utilisateur = f.id_utilisateur WHERE f.id_utilisateur = @idUser AND f.annee_mois = @datemy", conn))
                     {
                         command.Parameters.AddWithValue("@IdUser", idUser);
                         command.Parameters.AddWithValue("@datemy", datemy);
@@ -64,8 +71,7 @@ namespace AP1_GSB_DINH
                 }
             }
         }
-    
-    
+
 
         private void RedirectionHorsF(object sender, EventArgs e)
         {
@@ -76,6 +82,7 @@ namespace AP1_GSB_DINH
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();
+            ShowData();
         }
 
         private void RedirectionF(object sender, EventArgs e)
@@ -89,16 +96,33 @@ namespace AP1_GSB_DINH
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();
+            ShowData();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "total")
+            {
+                {
+                      string value = e.Value.ToString();
+                      value = value + " €";
 
+                       e.Value  = value;
+                }
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            dataGridView1.Rows.Add();
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "montant")
+            {
+                {
+                    string value = e.Value.ToString();
+                    value = (value + " €");
+
+                    e.Value = value;
+                }
+            }
         }
     }
 }

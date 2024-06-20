@@ -54,10 +54,10 @@
             // TitreAjouterForm
             // 
             this.TitreAjouterForm.AutoSize = true;
-            this.TitreAjouterForm.Font = new System.Drawing.Font("Bahnschrift Condensed", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitreAjouterForm.Location = new System.Drawing.Point(344, 25);
+            this.TitreAjouterForm.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitreAjouterForm.Location = new System.Drawing.Point(274, 25);
             this.TitreAjouterForm.Name = "TitreAjouterForm";
-            this.TitreAjouterForm.Size = new System.Drawing.Size(287, 34);
+            this.TitreAjouterForm.Size = new System.Drawing.Size(407, 34);
             this.TitreAjouterForm.TabIndex = 0;
             this.TitreAjouterForm.Text = "AJOUTER NOTE HORS-FORFAIT";
             // 

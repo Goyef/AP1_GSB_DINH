@@ -55,6 +55,11 @@ namespace AP1_GSB_DINH
         {
             string datemy = db.DateFiche();
             string sum = SumInput.Text;
+            if (DescInput.Text == "")
+            {
+                MessageBox.Show("Veuillez saisir une description");
+                return;
+            }
             if (float.TryParse(sum, out float value))
             {
                 value = (float)System.Math.Round(value, 3);
@@ -66,30 +71,24 @@ namespace AP1_GSB_DINH
                 SumInput.Clear();
                 return;
             }
-            Ajout AjoutHF = new Ajout(DescInput.Text, sum, db.ConvertDateFormat(Calendar.Value));
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
                 {
-                    // Acces à la bonne fiche
-                    using (MySqlCommand command = new MySqlCommand("SELECT id_fiche FROM fiche_frais LEFT JOIN utilisateur On utilisateur.id_utilisateur = fiche_frais.id_utilisateur " +
-                        "WHERE fiche_frais.id_utilisateur = @idUser AND fiche_frais.annee_mois = @datemy", conn))
-                    {
-                        command.Parameters.AddWithValue("@idUser", idUser);
-                        command.Parameters.AddWithValue("datemy", datemy);
-                        idFiche = Convert.ToInt32(command.ExecuteScalar());
-                    }
+                    getIdFiche();
                     // Ajout à la base
                     using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `frais_hors_forfait`(`nom`, `montant`, `date`, `id_fiche`) VALUES (@nom, @montant, @date, @idFiche);", conn))
                     {
-                        cmd.Parameters.AddWithValue("@nom",AjoutHF.Nom);
-                        cmd.Parameters.AddWithValue("@montant", AjoutHF.Montant);
-                        cmd.Parameters.AddWithValue("@date", AjoutHF.Date);
+                        cmd.Parameters.AddWithValue("@nom", DescInput.Text);
+                        cmd.Parameters.AddWithValue("@montant", sum);
+                        cmd.Parameters.AddWithValue("@date", db.ConvertDateFormat(Calendar.Value));
                         cmd.Parameters.AddWithValue("@idFiche", idFiche);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Un nouvel élément a bien été ajouté");
                     }
                     conn.Close();
+                    UpdateData();
+                    this.Close();
                 }
                 else
                 {
@@ -117,6 +116,55 @@ namespace AP1_GSB_DINH
         private void AjoutHorsForfait_Load(object sender, EventArgs e)
         {
             FixLimitDate();
+        }
+
+        private int getIdFiche()
+        {
+            // Acces à la bonne fiche
+            using (MySqlConnection conn = db.GetConnection())
+            {
+                if (conn != null)
+                {
+                    string datemy = db.DateFiche();
+                    using (MySqlCommand command = new MySqlCommand("SELECT id_fiche FROM fiche_frais LEFT JOIN utilisateur On utilisateur.id_utilisateur = fiche_frais.id_utilisateur " +
+                        "WHERE fiche_frais.id_utilisateur = @idUser AND fiche_frais.annee_mois = @datemy", conn))
+                    {
+                        command.Parameters.AddWithValue("@idUser", idUser);
+                        command.Parameters.AddWithValue("@datemy", datemy);
+                        idFiche = Convert.ToInt32(command.ExecuteScalar());
+                        conn.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
+                }
+                return idFiche;
+            }
+        }
+        private void UpdateData()
+        {
+            using (MySqlConnection conn = db.GetConnection())
+            {
+                //mettre le update data dans le service
+                if (conn != null)
+                {
+                    // besoin id fiche
+                    using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_forfait.total) FROM frais_forfait WHERE" +
+                        " frais_forfait.id_fiche = fiche_frais.id_fiche ) + ( SELECT SUM(frais_hors_forfait.montant) FROM frais_hors_forfait WHERE frais_hors_forfait.id_fiche =" +
+                        " fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
+                    {
+                        command.Parameters.AddWithValue("@idFiche", idFiche);
+                        command.ExecuteNonQuery();
+                    }
+                    conn.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
+                }
+            }
         }
     }
 }

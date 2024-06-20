@@ -113,12 +113,7 @@ namespace AP1_GSB_DINH
             LoadForm(new AjouterForm(idUser));
         }
 
-       
-
-        private void DateLabel_Click(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 
  }

@@ -83,7 +83,6 @@
             this.DateLabel.Size = new System.Drawing.Size(63, 29);
             this.DateLabel.TabIndex = 3;
             this.DateLabel.Text = "Date";
-            this.DateLabel.Click += new System.EventHandler(this.DateLabel_Click);
             // 
             // panel1
             // 
@@ -147,7 +146,7 @@
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.Location = new System.Drawing.Point(154, 70);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(968, 607);
+            this.mainPanel.Size = new System.Drawing.Size(974, 607);
             this.mainPanel.TabIndex = 6;
             // 
             // VisiteurForm

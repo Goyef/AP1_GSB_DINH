@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AP1_GSB_DINH.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -74,8 +75,9 @@ namespace AP1_GSB_DINH
                     this.Show();
                     break;
                 case "comptable":
-                    /*ComptableForm newForm = new ComptableForm(dataId);
-                    newForm.ShowDialog();*/
+                    ComptableForm newForm2 = new ComptableForm(dataId);
+                    this.Hide();
+                    newForm2.ShowDialog();
                     this.Show();
                     break;
             }

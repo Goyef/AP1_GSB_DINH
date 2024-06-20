@@ -73,10 +73,10 @@
             // TitreAjouterForm
             // 
             this.TitreAjouterForm.AutoSize = true;
-            this.TitreAjouterForm.Font = new System.Drawing.Font("Bahnschrift Condensed", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitreAjouterForm.Location = new System.Drawing.Point(376, 25);
+            this.TitreAjouterForm.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TitreAjouterForm.Location = new System.Drawing.Point(310, 25);
             this.TitreAjouterForm.Name = "TitreAjouterForm";
-            this.TitreAjouterForm.Size = new System.Drawing.Size(228, 34);
+            this.TitreAjouterForm.Size = new System.Drawing.Size(323, 34);
             this.TitreAjouterForm.TabIndex = 0;
             this.TitreAjouterForm.Text = "AJOUTER NOTE FORFAIT";
             // 
@@ -127,11 +127,6 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(513, 247);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -145,6 +140,7 @@
             0,
             0,
             0});
+            this.numericUpDown1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numericUpDown1_KeyPress);
             // 
             // QuantityLabel
             // 

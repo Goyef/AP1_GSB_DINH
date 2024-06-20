@@ -98,73 +98,90 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AjoutForfait.cs">
+    <Compile Include="Forms\Visiteur\AjoutForfait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AjoutForfait.Designer.cs">
+    <Compile Include="Forms\Visiteur\AjoutForfait.Designer.cs">
       <DependentUpon>AjoutForfait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Ajout.cs" />
-    <Compile Include="Classes\FicheFrais.cs" />
-    <Compile Include="Forms\FicheForm.cs">
+    <Compile Include="Forms\Commun\FicheForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FicheForm.Designer.cs">
+    <Compile Include="Forms\Commun\FicheForm.Designer.cs">
       <DependentUpon>FicheForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AjouterForm.cs">
+    <Compile Include="Forms\Visiteur\AjouterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AjouterForm.Designer.cs">
+    <Compile Include="Forms\Visiteur\AjouterForm.Designer.cs">
       <DependentUpon>AjouterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AjoutHorsForfait.cs">
+    <Compile Include="Forms\Visiteur\AjoutHorsForfait.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AjoutHorsForfait.Designer.cs">
+    <Compile Include="Forms\Visiteur\AjoutHorsForfait.Designer.cs">
       <DependentUpon>AjoutHorsForfait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Historique.cs">
+    <Compile Include="Forms\Comptable\ComptableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Historique.Designer.cs">
+    <Compile Include="Forms\Comptable\ComptableForm.Designer.cs">
+      <DependentUpon>ComptableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Comptable\AfficherVisiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Comptable\AfficherVisiteur.Designer.cs">
+      <DependentUpon>AfficherVisiteur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Visiteur\Historique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Visiteur\Historique.Designer.cs">
       <DependentUpon>Historique.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Utilisateur.cs" />
     <Compile Include="Classes\Service.cs" />
-    <Compile Include="Forms\LoginForm.cs">
+    <Compile Include="Forms\Commun\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LoginForm.Designer.cs">
+    <Compile Include="Forms\Commun\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\VisiteurForm.cs">
+    <Compile Include="Forms\Visiteur\VisiteurForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\VisiteurForm.Designer.cs">
+    <Compile Include="Forms\Visiteur\VisiteurForm.Designer.cs">
       <DependentUpon>VisiteurForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\AjouterForm.resx">
+    <EmbeddedResource Include="Forms\Visiteur\AjouterForm.resx">
       <DependentUpon>AjouterForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AjoutForfait.resx">
+    <EmbeddedResource Include="Forms\Visiteur\AjoutForfait.resx">
       <DependentUpon>AjoutForfait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FicheForm.resx">
+    <EmbeddedResource Include="Forms\Comptable\ComptableForm.resx">
+      <DependentUpon>ComptableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Commun\FicheForm.resx">
       <DependentUpon>FicheForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AjoutHorsForfait.resx">
+    <EmbeddedResource Include="Forms\Visiteur\AjoutHorsForfait.resx">
       <DependentUpon>AjoutHorsForfait.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Historique.resx">
+    <EmbeddedResource Include="Forms\Comptable\AfficherVisiteur.resx">
+      <DependentUpon>AfficherVisiteur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Visiteur\Historique.resx">
       <DependentUpon>Historique.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoginForm.resx">
+    <EmbeddedResource Include="Forms\Commun\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\VisiteurForm.resx">
+    <EmbeddedResource Include="Forms\Visiteur\VisiteurForm.resx">
       <DependentUpon>VisiteurForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -192,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\Administrateur\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

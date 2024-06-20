@@ -56,25 +56,16 @@ namespace AP1_GSB_DINH
                 }
             }
         }
-
-        private void DetailButton_Click(object sender, EventArgs e)
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0) 
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "montant")
             {
-                DataGridViewRow row = this.dataGridView1.SelectedRows[0];
-
-                string message = "";
-                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    message += $"{cell.OwningColumn.HeaderText}: {cell.Value}\n";
-                }
+                    string value = e.Value.ToString();
+                    value = value + " €";
 
-                MessageBox.Show(message);
+                    e.Value = value;
+                }
             }
         }
     }
