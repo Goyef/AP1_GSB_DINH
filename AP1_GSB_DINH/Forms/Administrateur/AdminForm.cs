@@ -10,27 +10,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AP1_GSB_DINH.Forms
+namespace AP1_GSB_DINH.Forms.Administrateur
 {
-    public partial class ComptableForm : Form
+    public partial class AdminForm : Form
     {
+        string nom;
+        string identifiant;
+        string mdp;
+        Service db= new Service();
         int idUser = 0;
-        private string nom;
-        private string identifiant;
-        private string mdp;
-        private Service db = new Service();
-        public ComptableForm(int IdUser)
+        public AdminForm(int IdUser)
         {
             InitializeComponent();
             idUser = IdUser;
         }
 
-        private void Exit(object sender, EventArgs e)
+        private void Deconnexion_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        public void LoadForm(object Form)
+        {
+            if (this.mainPanel.Controls.Count > 0)
+                this.mainPanel.Controls.RemoveAt(0);
 
-        private void ComptableForm_Load(object sender, EventArgs e)
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainPanel.Controls.Add(f);
+            this.mainPanel.Tag = f;
+            f.Show();
+        }
+        private void GestionFrais_Click(object sender, EventArgs e)
+        {
+            LoadForm(new GestionFrais());
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
         {
             DateTime today = DateTime.Today;
             DateLabel.Text = today.ToString("d/MM/yyyy");
@@ -58,22 +74,10 @@ namespace AP1_GSB_DINH.Forms
                 }
             }
         }
-        public void LoadForm(object Form)
-        {
-            if (this.mainPanel.Controls.Count > 0)
-                this.mainPanel.Controls.RemoveAt(0);
 
-            Form f = Form as Form;
-            f.TopLevel = false;
-            f.Dock = DockStyle.Fill;
-            this.mainPanel.Controls.Add(f);
-            this.mainPanel.Tag = f;
-            f.Show();
-        }
-
-        private void ShowFiches(object sender, EventArgs e)
+        private void GestionUtilisateur_Click(object sender, EventArgs e)
         {
-            LoadForm(new AfficherVisiteur());
+            LoadForm(new GestionUtilisateur());
         }
     }
 }

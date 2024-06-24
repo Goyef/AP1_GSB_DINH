@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AP1_GSB_DINH.Forms;
+using AP1_GSB_DINH.Forms.Administrateur;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -78,6 +79,12 @@ namespace AP1_GSB_DINH
                     ComptableForm newForm2 = new ComptableForm(dataId);
                     this.Hide();
                     newForm2.ShowDialog();
+                    this.Show();
+                    break;
+                case "administrateur":
+                    AdminForm newForm3 = new AdminForm(dataId);
+                    this.Hide();
+                    newForm3.ShowDialog();
                     this.Show();
                     break;
             }

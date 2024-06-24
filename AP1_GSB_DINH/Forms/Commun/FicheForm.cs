@@ -39,7 +39,7 @@ namespace AP1_GSB_DINH
             {
                 string[] listDate = datemy.Split('-');
                 DateConverter(listDate);
-                getIdFiche();
+                GetIdFiche();
             }
             else
             {
@@ -143,7 +143,7 @@ namespace AP1_GSB_DINH
             MoisLabel.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
         }
 
-        private int getIdFiche()
+        private int GetIdFiche()
         {
             // Acces à la bonne fiche
             using (MySqlConnection conn = db.GetConnection())

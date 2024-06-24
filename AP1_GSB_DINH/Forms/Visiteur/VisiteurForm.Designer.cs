@@ -95,6 +95,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1128, 66);
             this.panel1.TabIndex = 4;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Deconnexion
             // 
@@ -113,7 +114,7 @@
             // 
             this.TypeLabel.BackColor = System.Drawing.Color.White;
             this.TypeLabel.Font = new System.Drawing.Font("Bahnschrift Condensed", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TypeLabel.Location = new System.Drawing.Point(162, 15);
+            this.TypeLabel.Location = new System.Drawing.Point(448, 14);
             this.TypeLabel.Name = "TypeLabel";
             this.TypeLabel.Size = new System.Drawing.Size(105, 35);
             this.TypeLabel.TabIndex = 4;

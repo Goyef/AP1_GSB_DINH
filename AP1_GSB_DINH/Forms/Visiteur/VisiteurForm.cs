@@ -82,7 +82,7 @@ namespace AP1_GSB_DINH
 
         private void Exit(object sender, EventArgs e)
         {
-            this.Close();
+             this.Close();
         }
 
         public void LoadForm(object Form)
@@ -113,7 +113,10 @@ namespace AP1_GSB_DINH
             LoadForm(new AjouterForm(idUser));
         }
 
-    
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
  }

@@ -21,10 +21,16 @@ namespace AP1_GSB_DINH.Forms
 
         private void AfficherVisiteur_Load(object sender, EventArgs e)
         {
+            string datemy = db.DateFiche();
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
                 {
+                    using (MySqlCommand commd = new MySqlCommand("UPDATE `fiche_frais` SET `id_etat`= 1 WHERE id_etat = 2 AND fiche_frais.annee_mois != @datemy;", conn))
+                    {
+                        commd.Parameters.AddWithValue("@datemy", datemy);
+                        commd.ExecuteNonQuery();
+                    }
                     using (MySqlCommand cmd = new MySqlCommand("SELECT nom FROM `utilisateur` WHERE utilisateur.id_role = 1 ;", conn))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())

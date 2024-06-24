@@ -29,7 +29,6 @@ namespace AP1_GSB_DINH
 
         private void FixLimitDate()
         {
-
             DateTime now = DateTime.Now;
             string min;
             if (now.Day < 11)
@@ -53,7 +52,6 @@ namespace AP1_GSB_DINH
 
         private void AjoutBt_Click(object sender, EventArgs e)
         {
-            string datemy = db.DateFiche();
             string sum = SumInput.Text;
             if (DescInput.Text == "")
             {
@@ -75,7 +73,7 @@ namespace AP1_GSB_DINH
             {
                 if (conn != null)
                 {
-                    getIdFiche();
+                    GetIdFiche();
                     // Ajout à la base
                     using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `frais_hors_forfait`(`nom`, `montant`, `date`, `id_fiche`) VALUES (@nom, @montant, @date, @idFiche);", conn))
                     {
@@ -87,7 +85,7 @@ namespace AP1_GSB_DINH
                         MessageBox.Show("Un nouvel élément a bien été ajouté");
                     }
                     conn.Close();
-                    UpdateData();
+                    db.UpdateData(idFiche);
                     this.Close();
                 }
                 else
@@ -118,7 +116,7 @@ namespace AP1_GSB_DINH
             FixLimitDate();
         }
 
-        private int getIdFiche()
+        private int GetIdFiche()
         {
             // Acces à la bonne fiche
             using (MySqlConnection conn = db.GetConnection())
@@ -142,29 +140,6 @@ namespace AP1_GSB_DINH
                 return idFiche;
             }
         }
-        private void UpdateData()
-        {
-            using (MySqlConnection conn = db.GetConnection())
-            {
-                //mettre le update data dans le service
-                if (conn != null)
-                {
-                    // besoin id fiche
-                    using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_forfait.total) FROM frais_forfait WHERE" +
-                        " frais_forfait.id_fiche = fiche_frais.id_fiche ) + ( SELECT SUM(frais_hors_forfait.montant) FROM frais_hors_forfait WHERE frais_hors_forfait.id_fiche =" +
-                        " fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
-                    {
-                        command.Parameters.AddWithValue("@idFiche", idFiche);
-                        command.ExecuteNonQuery();
-                    }
-                    conn.Close();
-
-                }
-                else
-                {
-                    MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
-                }
-            }
-        }
+  
     }
 }

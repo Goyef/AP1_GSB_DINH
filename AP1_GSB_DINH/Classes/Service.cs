@@ -48,25 +48,63 @@ namespace AP1_GSB_DINH
             return returnDate;
         }
 
-        public List<string> DataLimite()
+        public void UpdateData(int idFiche)
         {
-            List<string> list = new List<string>();
-
-            //SELECT* FROM `frais_hors_forfait` WHERE frais_hors_forfait.date >= "11-06-2024" AND frais_hors_forfait.date <= "10-07-2024"
-
-            DateTime now = DateTime.Now;
-            MessageBox.Show(now.ToString());
-
-            if (now.Day < 11)
+            using (MySqlConnection conn = GetConnection())
             {
-                now = now.AddMonths(-1);
+                if (conn != null)
+                {
+                    using (MySqlCommand cmd3 = new MySqlCommand("SELECT * FROM fiche_frais RIGHT JOIN frais_hors_forfait ON frais_hors_forfait.id_fiche = fiche_frais.id_fiche " +
+                        "RIGHT JOIN frais_forfait ON frais_forfait.id_fiche = fiche_frais.id_fiche WHERE fiche_frais.id_fiche = @idFiche", conn))
+                    {
+                        cmd3.Parameters.AddWithValue("@idFiche", idFiche);
+                        if (Convert.ToInt32(cmd3.ExecuteScalar()) != 0)
+                        {
+                            using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_forfait.total) FROM frais_forfait WHERE" +
+                 " frais_forfait.id_fiche = fiche_frais.id_fiche ) + ( SELECT SUM(frais_hors_forfait.montant) FROM frais_hors_forfait WHERE frais_hors_forfait.id_fiche =" +
+                 " fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
+                            {
+                                command.Parameters.AddWithValue("@idFiche", idFiche);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            using (MySqlCommand cmd1 = new MySqlCommand("SELECT * FROM frais_forfait WHERE frais_forfait.id_fiche = @idFiche", conn))
+                            {
+                                cmd1.Parameters.AddWithValue("@idFiche", idFiche);
+                                if (Convert.ToInt32(cmd1.ExecuteScalar()) != 0)
+                                {
+                                    using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_forfait.total) FROM frais_forfait WHERE" +
+                               " frais_forfait.id_fiche = fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
+                                    {
+                                        command.Parameters.AddWithValue("@idFiche", idFiche);
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                            using (MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM frais_hors_forfait WHERE frais_hors_forfait.id_fiche = @idFiche", conn))
+                            {
+                                cmd2.Parameters.AddWithValue("@idFiche", idFiche);
+                                if (Convert.ToInt32(cmd2.ExecuteScalar()) != 0)
+                                {
+                                    using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_hors_forfait.montant) FROM frais_hors_forfait WHERE" +
+                                    " frais_hors_forfait.id_fiche = fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
+                                    {
+                                        command.Parameters.AddWithValue("@idFiche", idFiche);
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    conn.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
+                }
             }
-            string dateMin = $"11-{now.Month}-2024";
-            list.Add(dateMin);
-            now = now.AddMonths(1);
-            string dateMax = $"10-{now.Month}-2024";
-            list.Add(dateMax);
-            return list;
         }
     }
 }

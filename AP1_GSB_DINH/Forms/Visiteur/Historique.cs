@@ -44,8 +44,6 @@ namespace AP1_GSB_DINH
                             // Les données sélectionnées vont donc être affichées dans le Grid
                             dataGridView1.DataSource = table;
                             conn.Close();
-
-
                         }
 
                     }
@@ -66,6 +64,30 @@ namespace AP1_GSB_DINH
 
                     e.Value = value;
                 }
+            }
+        }
+
+        private void DetailBt_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                int rowIndex = dataGridView1.SelectedRows[0].Index;
+
+                int id = Convert.ToInt32(dataGridView1.Rows[rowIndex].Cells["id_fiche"].Value);
+                string dateC = dataGridView1.Rows[rowIndex].Cells["annee_mois"].Value.ToString();
+                FicheForm newForm = new FicheForm(0, id, dateC);
+                this.Hide();
+                if (this.ParentForm != null)
+                {
+                    this.ParentForm.Hide();
+                }
+                newForm.ShowDialog();
+                this.ParentForm.Show();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne.");
             }
         }
     }

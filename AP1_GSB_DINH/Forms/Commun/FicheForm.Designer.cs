@@ -166,6 +166,7 @@
             // 
             this.ExitBt.BackColor = System.Drawing.Color.Red;
             this.ExitBt.Enabled = false;
+            this.ExitBt.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ExitBt.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ExitBt.Location = new System.Drawing.Point(801, 14);
             this.ExitBt.Name = "ExitBt";

@@ -83,26 +83,18 @@ namespace AP1_GSB_DINH
 
         private void AjoutBt_Click(object sender, EventArgs e)
         {
-            
             string prix ="";
             float montant;
             int qty = Convert.ToInt32(numericUpDown1.Value);
-
+            GetIdFiche();
             string datemy = db.DateFiche();
 
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
                 {
-                    using (MySqlCommand command = new MySqlCommand("SELECT id_fiche FROM fiche_frais LEFT JOIN utilisateur On utilisateur.id_utilisateur = fiche_frais.id_utilisateur " +
-                      "WHERE fiche_frais.id_utilisateur = @idUser AND fiche_frais.annee_mois = @datemy", conn))
-                    {
-                        command.Parameters.AddWithValue("@idUser", idUser);
-                        command.Parameters.AddWithValue("datemy", datemy);
-                        idFiche = Convert.ToInt32(command.ExecuteScalar());
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT grille_tarif.id_tarif, grille_tarif.montant FROM grille_tarif WHERE grille_tarif.type = @type", conn)) { 
 
-                        MySqlCommand cmd = new MySqlCommand("SELECT frais_forfait.id_tarif, grille_tarif.montant FROM frais_forfait LEFT JOIN grille_tarif ON " +
-                            "grille_tarif.id_tarif = frais_forfait.id_tarif WHERE grille_tarif.type = @type", conn);
                         cmd.Parameters.AddWithValue("@type", TypeSelect.Text);
                         MySqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
@@ -129,7 +121,7 @@ namespace AP1_GSB_DINH
                         MessageBox.Show("Un nouvel élément a bien été ajouté");
                     }
                     conn.Close();
-                    UpdateData();
+                    db.UpdateData(idFiche);
                     this.Close();
                 }
                 else
@@ -139,35 +131,34 @@ namespace AP1_GSB_DINH
             }
         }
 
-        private void UpdateData()
+        private int GetIdFiche()
         {
+            // Acces à la bonne fiche
             using (MySqlConnection conn = db.GetConnection())
             {
-                //mettre le update data dans le service
                 if (conn != null)
                 {
-                    // besoin id fiche
-                    using (MySqlCommand command = new MySqlCommand("UPDATE fiche_frais SET fiche_frais.montant = ( SELECT SUM(frais_forfait.total) FROM frais_forfait WHERE" +
-                        " frais_forfait.id_fiche = fiche_frais.id_fiche ) + ( SELECT SUM(frais_hors_forfait.montant) FROM frais_hors_forfait WHERE frais_hors_forfait.id_fiche =" +
-                        " fiche_frais.id_fiche ) WHERE fiche_frais.id_fiche = @idFiche;", conn))
+                    string datemy = db.DateFiche();
+                    using (MySqlCommand command = new MySqlCommand("SELECT id_fiche FROM fiche_frais LEFT JOIN utilisateur On utilisateur.id_utilisateur = fiche_frais.id_utilisateur " +
+                        "WHERE fiche_frais.id_utilisateur = @idUser AND fiche_frais.annee_mois = @datemy", conn))
                     {
-                        command.Parameters.AddWithValue("@idFiche", idFiche);
-                        command.ExecuteNonQuery();
+                        command.Parameters.AddWithValue("@idUser", idUser);
+                        command.Parameters.AddWithValue("@datemy", datemy);
+                        idFiche = Convert.ToInt32(command.ExecuteScalar());
+                        conn.Close();
                     }
-                    conn.Close();
-
                 }
                 else
                 {
                     MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
                 }
+                return idFiche;
             }
         }
-
         private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (this.numericUpDown1.Value > 50 || !Char.IsDigit(ch) && ch != 8)
+            if (this.numericUpDown1.Value > 70 || !Char.IsDigit(ch) && ch != 8)
             {
                 e.Handled = true;
             }

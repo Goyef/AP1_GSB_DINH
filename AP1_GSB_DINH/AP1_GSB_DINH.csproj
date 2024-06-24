@@ -98,6 +98,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Administrateur\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrateur\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Administrateur\GestionUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrateur\GestionUtilisateur.Designer.cs">
+      <DependentUpon>GestionUtilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Administrateur\ModalGestionFrais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrateur\ModalGestionFrais.Designer.cs">
+      <DependentUpon>ModalGestionFrais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Administrateur\GestionFrais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrateur\GestionFrais.Designer.cs">
+      <DependentUpon>GestionFrais.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Administrateur\ModalGestionUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Administrateur\ModalGestionUtilisateur.Designer.cs">
+      <DependentUpon>ModalGestionUtilisateur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Visiteur\AjoutForfait.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +186,21 @@
     <Compile Include="Forms\Visiteur\VisiteurForm.Designer.cs">
       <DependentUpon>VisiteurForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\Administrateur\AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Administrateur\GestionFrais.resx">
+      <DependentUpon>GestionFrais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Administrateur\GestionUtilisateur.resx">
+      <DependentUpon>GestionUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Administrateur\ModalGestionFrais.resx">
+      <DependentUpon>ModalGestionFrais.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Administrateur\ModalGestionUtilisateur.resx">
+      <DependentUpon>ModalGestionUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Visiteur\AjouterForm.resx">
       <DependentUpon>AjouterForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -210,8 +255,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Administrateur\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
