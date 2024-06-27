@@ -46,18 +46,20 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.panel2.Location = new System.Drawing.Point(2, 80);
+            this.panel2.Location = new System.Drawing.Point(1, 52);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(964, 15);
+            this.panel2.Size = new System.Drawing.Size(643, 10);
             this.panel2.TabIndex = 14;
             // 
             // TitreAjouterForm
             // 
             this.TitreAjouterForm.AutoSize = true;
             this.TitreAjouterForm.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitreAjouterForm.Location = new System.Drawing.Point(274, 25);
+            this.TitreAjouterForm.Location = new System.Drawing.Point(183, 16);
+            this.TitreAjouterForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TitreAjouterForm.Name = "TitreAjouterForm";
-            this.TitreAjouterForm.Size = new System.Drawing.Size(407, 34);
+            this.TitreAjouterForm.Size = new System.Drawing.Size(273, 23);
             this.TitreAjouterForm.TabIndex = 0;
             this.TitreAjouterForm.Text = "AJOUTER NOTE HORS-FORFAIT";
             // 
@@ -66,21 +68,23 @@
             this.returnBt.BackColor = System.Drawing.Color.Crimson;
             this.returnBt.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.returnBt.ForeColor = System.Drawing.Color.Black;
-            this.returnBt.Location = new System.Drawing.Point(786, 8);
+            this.returnBt.Location = new System.Drawing.Point(524, 5);
+            this.returnBt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.returnBt.Name = "returnBt";
-            this.returnBt.Size = new System.Drawing.Size(165, 71);
+            this.returnBt.Size = new System.Drawing.Size(110, 46);
             this.returnBt.TabIndex = 12;
             this.returnBt.Text = "Retour";
             this.returnBt.UseVisualStyleBackColor = false;
-            this.returnBt.Click += new System.EventHandler(this.returnBt_Click);
+            this.returnBt.Click += new System.EventHandler(this.ReturnBt_Click);
             // 
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
             this.DescriptionLabel.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DescriptionLabel.Location = new System.Drawing.Point(252, 183);
+            this.DescriptionLabel.Location = new System.Drawing.Point(168, 119);
+            this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(103, 29);
+            this.DescriptionLabel.Size = new System.Drawing.Size(68, 19);
             this.DescriptionLabel.TabIndex = 16;
             this.DescriptionLabel.Text = "Description";
             // 
@@ -88,19 +92,21 @@
             // 
             this.SumLabel.AutoSize = true;
             this.SumLabel.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SumLabel.Location = new System.Drawing.Point(252, 245);
+            this.SumLabel.Location = new System.Drawing.Point(168, 159);
+            this.SumLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SumLabel.Name = "SumLabel";
-            this.SumLabel.Size = new System.Drawing.Size(77, 29);
+            this.SumLabel.Size = new System.Drawing.Size(53, 19);
             this.SumLabel.TabIndex = 17;
             this.SumLabel.Text = "Montant";
             // 
             // SumInput
             // 
-            this.SumInput.Location = new System.Drawing.Point(544, 245);
+            this.SumInput.Location = new System.Drawing.Point(363, 159);
+            this.SumInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SumInput.MaxLength = 20;
             this.SumInput.Multiline = true;
             this.SumInput.Name = "SumInput";
-            this.SumInput.Size = new System.Drawing.Size(200, 26);
+            this.SumInput.Size = new System.Drawing.Size(135, 18);
             this.SumInput.TabIndex = 18;
             this.SumInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SumInput_KeyPress);
             // 
@@ -113,18 +119,20 @@
             // 
             // Calendar
             // 
-            this.Calendar.Location = new System.Drawing.Point(544, 323);
+            this.Calendar.Location = new System.Drawing.Point(363, 210);
+            this.Calendar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Calendar.Name = "Calendar";
-            this.Calendar.Size = new System.Drawing.Size(200, 26);
+            this.Calendar.Size = new System.Drawing.Size(135, 20);
             this.Calendar.TabIndex = 19;
             // 
             // DateLabel
             // 
             this.DateLabel.AutoSize = true;
             this.DateLabel.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateLabel.Location = new System.Drawing.Point(252, 323);
+            this.DateLabel.Location = new System.Drawing.Point(168, 210);
+            this.DateLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DateLabel.Name = "DateLabel";
-            this.DateLabel.Size = new System.Drawing.Size(48, 29);
+            this.DateLabel.Size = new System.Drawing.Size(33, 19);
             this.DateLabel.TabIndex = 20;
             this.DateLabel.Text = "Date";
             // 
@@ -132,9 +140,10 @@
             // 
             this.AjoutBt.BackColor = System.Drawing.Color.LimeGreen;
             this.AjoutBt.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AjoutBt.Location = new System.Drawing.Point(398, 477);
+            this.AjoutBt.Location = new System.Drawing.Point(265, 310);
+            this.AjoutBt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AjoutBt.Name = "AjoutBt";
-            this.AjoutBt.Size = new System.Drawing.Size(165, 71);
+            this.AjoutBt.Size = new System.Drawing.Size(110, 46);
             this.AjoutBt.TabIndex = 21;
             this.AjoutBt.Text = "VALIDER";
             this.AjoutBt.UseVisualStyleBackColor = false;
@@ -142,11 +151,12 @@
             // 
             // DescInput
             // 
-            this.DescInput.Location = new System.Drawing.Point(544, 183);
+            this.DescInput.Location = new System.Drawing.Point(363, 119);
+            this.DescInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DescInput.MaxLength = 50;
             this.DescInput.Multiline = true;
             this.DescInput.Name = "DescInput";
-            this.DescInput.Size = new System.Drawing.Size(200, 26);
+            this.DescInput.Size = new System.Drawing.Size(135, 18);
             this.DescInput.TabIndex = 22;
             // 
             // notifyIcon1
@@ -156,9 +166,9 @@
             // 
             // AjoutHorsForfait
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 606);
+            this.ClientSize = new System.Drawing.Size(645, 394);
             this.Controls.Add(this.TitreAjouterForm);
             this.Controls.Add(this.DescInput);
             this.Controls.Add(this.AjoutBt);
@@ -170,6 +180,7 @@
             this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AjoutHorsForfait";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

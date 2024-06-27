@@ -28,13 +28,13 @@ namespace AP1_GSB_DINH
 
 
 
-        private void returnBt_Click(object sender, EventArgs e)
+        private void ReturnBt_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
 
-        private void FixlimitDate()
+        private void FixLimitDate()
         {
             DateTime now = DateTime.Now;
             string min;
@@ -55,7 +55,7 @@ namespace AP1_GSB_DINH
 
         private void AjouterForfait_Load(object sender, EventArgs e)
         {
-            FixlimitDate();
+            FixLimitDate();
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
@@ -64,6 +64,7 @@ namespace AP1_GSB_DINH
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
+                            //chargement des types
                             DataTable dt = new DataTable();
                             dt.Columns.Add("type", typeof(string));
                             dt.Load(reader);
@@ -85,9 +86,8 @@ namespace AP1_GSB_DINH
         {
             string prix ="";
             float montant;
-            int qty = Convert.ToInt32(numericUpDown1.Value);
+            int qty = Convert.ToInt32(QuantiteInput.Value);
             GetIdFiche();
-            string datemy = db.DateFiche();
 
             using (MySqlConnection conn = db.GetConnection())
             {
@@ -133,7 +133,6 @@ namespace AP1_GSB_DINH
 
         private int GetIdFiche()
         {
-            // Acces à la bonne fiche
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
@@ -155,10 +154,10 @@ namespace AP1_GSB_DINH
                 return idFiche;
             }
         }
-        private void numericUpDown1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Quantite_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (this.numericUpDown1.Value > 70 || !Char.IsDigit(ch) && ch != 8)
+            if (this.QuantiteInput.Value > 70 || !Char.IsDigit(ch) && ch != 8)
             {
                 e.Handled = true;
             }

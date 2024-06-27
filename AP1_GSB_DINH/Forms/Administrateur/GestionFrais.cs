@@ -54,8 +54,7 @@ namespace AP1_GSB_DINH.Forms.Administrateur
             if (dataGridView1.Columns[e.ColumnIndex].Name == "montant")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = value + " €";
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }

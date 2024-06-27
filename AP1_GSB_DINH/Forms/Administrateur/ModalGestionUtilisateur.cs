@@ -34,6 +34,18 @@ namespace AP1_GSB_DINH.Forms.Administrateur
             {
                 if (conn != null)
                 {
+                    if (fonction == "A")
+                    {
+                        ModAJout.Text = "Ajouter";
+                    }
+                    else if (fonction == "M")
+                    {
+                        IdLabel.Visible = true;
+                        IdLabel.Enabled = true;
+                        UserSelect.Visible = true;
+                        UserSelect.Enabled = true;
+                        ModAJout.Text = "Modifier";
+                    }
                     using (MySqlCommand cmd = new MySqlCommand("SELECT id_utilisateur FROM `utilisateur`;", conn))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -61,18 +73,6 @@ namespace AP1_GSB_DINH.Forms.Administrateur
                 {
                     MessageBox.Show("Il y a eu un problème avec la base de donnée, veuillez recommencez");
                 }
-            }
-            if (fonction == "A")
-            {
-                ModAJout.Text = "Ajouter";
-            }
-            else if (fonction == "M")
-            {
-                IdLabel.Visible = true;
-                IdLabel.Enabled = true;
-                UserSelect.Visible = true;
-                UserSelect.Enabled = true;
-                ModAJout.Text = "Modifier";
             }
         }
 
@@ -103,30 +103,30 @@ namespace AP1_GSB_DINH.Forms.Administrateur
             }
             using (MySqlConnection conn = db.GetConnection())
             {
-                    if (conn != null)
+                if (conn != null)
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT id_role FROM role WHERE role.role = @role", conn))
                     {
-                        using (MySqlCommand cmd = new MySqlCommand("SELECT id_role FROM role WHERE role.role = @role",conn))
-                        {
-                            cmd.Parameters.AddWithValue("@role",RoleSelect.Text);
-                            idRole = Convert.ToInt32(cmd.ExecuteScalar());
-                        }
-                        using (MySqlCommand command = new MySqlCommand("UPDATE `utilisateur` SET `nom`=@nom,`identifiant`=@identifiant,`mot_de_passe`=@mdp,`id_role`=@id_role WHERE utilisateur.id_utilisateur = @idUser;", conn))
-                        {
-                            command.Parameters.AddWithValue("@idUser", UserSelect.Text);
-                            command.Parameters.AddWithValue("@id_role", idRole);
-                            command.Parameters.AddWithValue("@mdp", mdpInput.Text);
-                            command.Parameters.AddWithValue("@identifiant", IdentifiantInput.Text);
-                            command.Parameters.AddWithValue("@nom", NomInput.Text);
-                            command.ExecuteNonQuery();
-                            MessageBox.Show($"L'utilsateur {UserSelect.Text} a bien eu ses données modifiées");
-                        }
+                        cmd.Parameters.AddWithValue("@role", RoleSelect.Text);
+                        idRole = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    using (MySqlCommand command = new MySqlCommand("UPDATE `utilisateur` SET `nom`=@nom,`identifiant`=@identifiant,`mot_de_passe`=@mdp,`id_role`=@id_role WHERE utilisateur.id_utilisateur = @idUser;", conn))
+                    {
+                        command.Parameters.AddWithValue("@idUser", UserSelect.Text);
+                        command.Parameters.AddWithValue("@id_role", idRole);
+                        command.Parameters.AddWithValue("@mdp", mdpInput.Text);
+                        command.Parameters.AddWithValue("@identifiant", IdentifiantInput.Text);
+                        command.Parameters.AddWithValue("@nom", NomInput.Text);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show($"L'utilsateur {UserSelect.Text} a bien eu ses données modifiées");
+                    }
                     conn.Close();
                     this.Close();
                 }
-                    else
-                    {
-                        MessageBox.Show("Il y a eu un problème avec la base de donnée, veuillez recommencez");
-                    }
+                else
+                {
+                    MessageBox.Show("Il y a eu un problème avec la base de donnée, veuillez recommencez");
+                }
             }
         }
         private void AddUser()
@@ -160,8 +160,8 @@ namespace AP1_GSB_DINH.Forms.Administrateur
                     {
                         comd.Parameters.AddWithValue("@nom", NomInput.Text);
                         comd.Parameters.AddWithValue("@identifiant", IdentifiantInput.Text);
-                        comd.Parameters.AddWithValue("@mot_de_passe",mdpInput.Text);
-                        comd.Parameters.AddWithValue("@id_role",idRole);
+                        comd.Parameters.AddWithValue("@mot_de_passe", mdpInput.Text);
+                        comd.Parameters.AddWithValue("@id_role", idRole);
                         comd.ExecuteNonQuery();
                         MessageBox.Show("Un nouvel élément a bien été ajouté");
                     }
@@ -176,33 +176,30 @@ namespace AP1_GSB_DINH.Forms.Administrateur
         }
         private void UserSelect_TextChanged(object sender, EventArgs e)
         {
-            if (UserSelect.Visible) {
+            if (UserSelect.Visible)
+            {
                 using (MySqlConnection conn = db.GetConnection())
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT nom FROM utilisateur WHERE utilisateur.id_utilisateur = @idUser", conn))
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT nom, identifiant, mot_de_passe FROM utilisateur WHERE utilisateur.id_utilisateur = @idUser", conn))
                     {
                         cmd.Parameters.AddWithValue("@idUser", UserSelect.Text);
-                        NomInput.Text = cmd.ExecuteScalar().ToString();
-
-                        MySqlCommand command = new MySqlCommand("SELECT nom FROM utilisateur WHERE utilisateur.id_utilisateur = @idUser", conn);
-                        command.Parameters.AddWithValue("@idUser", UserSelect.Text);
-                        NomInput.Text = command.ExecuteScalar().ToString();
-
-                        MySqlCommand commd = new MySqlCommand("SELECT identifiant FROM utilisateur WHERE utilisateur.id_utilisateur = @idUser", conn);
-                        commd.Parameters.AddWithValue("@idUser", UserSelect.Text);
-                        IdentifiantInput.Text = commd.ExecuteScalar().ToString();
-
-                        MySqlCommand cmmd = new MySqlCommand("SELECT mot_de_passe FROM utilisateur WHERE utilisateur.id_utilisateur = @idUser", conn);
-                        cmmd.Parameters.AddWithValue("@idUser", UserSelect.Text);
-                        mdpInput.Text = cmmd.ExecuteScalar().ToString();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            NomInput.Text = reader["nom"].ToString();
+                            IdentifiantInput.Text = reader["identifiant"].ToString();
+                            mdpInput.Text = reader["mot_de_passe"].ToString();
+                        }
+                        reader.Close();
                     }
                     using (MySqlCommand command = new MySqlCommand("SELECT role FROM role RIGHT JOIN utilisateur ON utilisateur.id_role = role.id_role WHERE utilisateur.id_utilisateur = @idUser", conn))
                     {
                         command.Parameters.AddWithValue("@idUser", UserSelect.Text);
                         RoleSelect.Text = command.ExecuteScalar().ToString();
                     }
-                    conn.Close();
                 }
-            } }
+
+            }
+        }
     }
 }

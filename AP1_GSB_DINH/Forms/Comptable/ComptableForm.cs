@@ -33,7 +33,7 @@ namespace AP1_GSB_DINH.Forms
         private void ComptableForm_Load(object sender, EventArgs e)
         {
             DateTime today = DateTime.Today;
-            DateLabel.Text = today.ToString("d/MM/yyyy");
+            DateLabel.Text = today.ToString("dd/MM/yyyy");
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)

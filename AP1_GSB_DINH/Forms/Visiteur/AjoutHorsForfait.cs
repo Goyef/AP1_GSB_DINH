@@ -45,7 +45,7 @@ namespace AP1_GSB_DINH
             Calendar.MaxDate = Max;
         }
 
-        private void returnBt_Click(object sender, EventArgs e)
+        private void ReturnBt_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -140,6 +140,7 @@ namespace AP1_GSB_DINH
                 return idFiche;
             }
         }
-  
+
+     
     }
 }

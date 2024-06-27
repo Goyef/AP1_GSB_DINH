@@ -102,8 +102,7 @@ namespace AP1_GSB_DINH
             if (dataGridView1.Columns[e.ColumnIndex].Name == "total")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = value + " €";
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }
@@ -115,8 +114,7 @@ namespace AP1_GSB_DINH
             if (dataGridView2.Columns[e.ColumnIndex].Name == "montant")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = (value + " €");
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }
@@ -128,8 +126,7 @@ namespace AP1_GSB_DINH
             if (dataGridView3.Columns[e.ColumnIndex].Name == "montant")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = (value + " €");
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }

@@ -33,14 +33,15 @@ namespace AP1_GSB_DINH
 
         private void Login(object sender, EventArgs e)
         {
-            string identifiant = textUsername.Text.Trim();
-            string mdp = textPassword.Text.Trim();
+            string identifiant = textUsername.Text;
+            string mdp = textPassword.Text;
 
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
                 {
-                    MySqlCommand cmd = new MySqlCommand("SELECT utilisateur.id_utilisateur FROM `utilisateur` WHERE mot_de_passe = '"+mdp+"' AND identifiant = '"+identifiant+"';", conn);
+                    MySqlCommand cmd = new MySqlCommand("SELECT utilisateur.id_utilisateur FROM `utilisateur` " +
+                        "WHERE mot_de_passe = '"+mdp+"' AND identifiant = '"+identifiant+"';", conn);
                     int dataId = Convert.ToInt32(cmd.ExecuteScalar());
                     if (dataId == 0)
                     {
@@ -50,7 +51,8 @@ namespace AP1_GSB_DINH
                         textUsername.Focus();
                         return;
                     }
-                    MySqlCommand command = new MySqlCommand("SELECT role FROM `role` INNER JOIN utilisateur ON utilisateur.id_role = role.id_role WHERE utilisateur.id_utilisateur = "+dataId+";", conn);
+                    MySqlCommand command = new MySqlCommand("SELECT role FROM `role` INNER JOIN utilisateur " +
+                        "ON utilisateur.id_role = role.id_role WHERE utilisateur.id_utilisateur = "+dataId+";", conn);
                     string role = Convert.ToString(command.ExecuteScalar());
                     conn.Close();
 

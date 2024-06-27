@@ -28,12 +28,44 @@ namespace AP1_GSB_DINH
             idUser = id_user;
         }
 
+        private void Exit(object sender, EventArgs e)
+        {
+             this.Close();
+        }
 
-        private void pageVisiteur_Load(object sender, EventArgs e)
+        public void LoadForm(object Form)
+        {
+            if (this.mainPanel.Controls.Count > 0)
+                this.mainPanel.Controls.RemoveAt(0);
+
+            Form f = Form as Form;
+            f.TopLevel = false;
+            f.Dock = DockStyle.Fill;
+            this.mainPanel.Controls.Add(f);
+            this.mainPanel.Tag = f;
+            f.Show();
+         }
+       
+        private void Historique_click(object sender, EventArgs e)
+        {
+            LoadForm(new Historique(idUser));
+        }
+
+        private void Ajout_Click(object sender, EventArgs e)
+        {
+            LoadForm(new FicheForm(idUser));
+        }
+
+        private void Consulter_Click(object sender, EventArgs e)
+        {
+            LoadForm(new AjouterForm(idUser));
+        }
+
+        private void Visiteur_Load(object sender, EventArgs e)
         {
             string datemy = db.DateFiche();
             DateTime today = DateTime.Today;
-            DateLabel.Text = today.ToString("d/MM/yyyy");
+            DateLabel.Text = today.ToString("dd/MM/yyyy");
             using (MySqlConnection conn = db.GetConnection())
             {
                 if (conn != null)
@@ -50,9 +82,9 @@ namespace AP1_GSB_DINH
                                 mdp = reader["mot_de_passe"].ToString();
                             }
                             Utilisateur newUser = new Utilisateur(idUser, nom, identifiant, mdp);
-                          
-                            UserLabel.Text = newUser.Nom ;
-                          
+
+                            UserLabel.Text = newUser.Nom;
+
                         }
                     }
                     using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM `fiche_frais` WHERE fiche_frais.annee_mois = @datemy AND fiche_frais.id_utilisateur = @idUser;", conn))
@@ -77,45 +109,7 @@ namespace AP1_GSB_DINH
                 {
                     MessageBox.Show("Il y a eu un probleme avec la base de donnée, veuillez recommencez");
                 }
-             }
-        }
-
-        private void Exit(object sender, EventArgs e)
-        {
-             this.Close();
-        }
-
-        public void LoadForm(object Form)
-        {
-            if (this.mainPanel.Controls.Count > 0)
-                this.mainPanel.Controls.RemoveAt(0);
-
-            Form f = Form as Form;
-            f.TopLevel = false;
-            f.Dock = DockStyle.Fill;
-            this.mainPanel.Controls.Add(f);
-            this.mainPanel.Tag = f;
-            f.Show();
-         }
-       
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadForm(new Historique(idUser));
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            LoadForm(new FicheForm(idUser));
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            LoadForm(new AjouterForm(idUser));
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            }
         }
     }
 

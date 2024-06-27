@@ -44,12 +44,12 @@ namespace AP1_GSB_DINH.Forms
                         DataGridViewButtonColumn acceptColumn = new DataGridViewButtonColumn();
                         acceptColumn.HeaderText = "A";
                         acceptColumn.Text = "ACCEPTER";
-                        acceptColumn.UseColumnTextForButtonValue = true; // Set to true to use Text property for the button
+                        acceptColumn.UseColumnTextForButtonValue = true;
                         dataGridView1.Columns.Add(acceptColumn);
                         DataGridViewButtonColumn refuseColum = new DataGridViewButtonColumn();
                         refuseColum.HeaderText = "R";
                         refuseColum.Text = "REFUSER";
-                        refuseColum.UseColumnTextForButtonValue = true; // Set to true to use Text property for the button
+                        refuseColum.UseColumnTextForButtonValue = true;
                         dataGridView1.Columns.Add(refuseColum);
                     }
                     conn.Close();
@@ -179,8 +179,7 @@ namespace AP1_GSB_DINH.Forms
             if (dataGridView1.Columns[e.ColumnIndex].Name == "montant")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = value + " €";
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }
