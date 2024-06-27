@@ -53,12 +53,12 @@ namespace AP1_GSB_DINH
 
         private void Ajout_Click(object sender, EventArgs e)
         {
-            LoadForm(new FicheForm(idUser));
+            LoadForm(new AjouterForm(idUser));
         }
 
         private void Consulter_Click(object sender, EventArgs e)
         {
-            LoadForm(new AjouterForm(idUser));
+            LoadForm(new FicheForm(idUser));
         }
 
         private void Visiteur_Load(object sender, EventArgs e)

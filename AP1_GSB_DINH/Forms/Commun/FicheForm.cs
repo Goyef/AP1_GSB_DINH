@@ -79,6 +79,7 @@ namespace AP1_GSB_DINH
                             dataGridView2.DataSource = table;
                         }
                     }
+                    db.UpdateData(idFiche);
                     using (MySqlCommand comd = new MySqlCommand("SELECT montant FROM `fiche_frais` WHERE fiche_frais.id_fiche = @idFiche", conn))
                     {
                         comd.Parameters.AddWithValue("@idFiche", idFiche);

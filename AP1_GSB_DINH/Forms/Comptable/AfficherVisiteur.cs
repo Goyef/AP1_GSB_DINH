@@ -106,6 +106,7 @@ namespace AP1_GSB_DINH.Forms
                         using (MySqlCommand cmd = new MySqlCommand("UPDATE `fiche_frais` SET `id_etat`= 4 WHERE fiche_frais.id_fiche = @idFiche", conn))
                         {
                             cmd.Parameters.AddWithValue("@idFiche", idFiche);
+                            if ()
                             cmd.ExecuteNonQuery();
                             conn.Close();
                             MessageBox.Show("La fiche a bien été mise en état REFUSER");
