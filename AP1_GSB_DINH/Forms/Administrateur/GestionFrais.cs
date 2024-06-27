@@ -66,8 +66,7 @@ namespace AP1_GSB_DINH.Forms.Administrateur
            fonction = "A";
             ModalGestionFrais newForm = new ModalGestionFrais(fonction);
             this.Hide();
-            if (this.ParentForm != null)
-                this.ParentForm.Hide();
+            this.ParentForm.Hide();
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();
@@ -79,8 +78,7 @@ namespace AP1_GSB_DINH.Forms.Administrateur
             fonction = "M";
             ModalGestionFrais newForm = new ModalGestionFrais(fonction);
             this.Hide();
-            if (this.ParentForm != null)
-                this.ParentForm.Hide();
+            this.ParentForm.Hide();
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();

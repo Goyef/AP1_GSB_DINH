@@ -106,7 +106,6 @@ namespace AP1_GSB_DINH.Forms
                         using (MySqlCommand cmd = new MySqlCommand("UPDATE `fiche_frais` SET `id_etat`= 4 WHERE fiche_frais.id_fiche = @idFiche", conn))
                         {
                             cmd.Parameters.AddWithValue("@idFiche", idFiche);
-                            if ()
                             cmd.ExecuteNonQuery();
                             conn.Close();
                             MessageBox.Show("La fiche a bien été mise en état REFUSER");
@@ -161,10 +160,7 @@ namespace AP1_GSB_DINH.Forms
                 string dateC = dataGridView1.Rows[rowIndex].Cells["annee_mois"].Value.ToString();
                 FicheForm newForm = new FicheForm(0,id,dateC);
                 this.Hide();
-                if (this.ParentForm != null)
-                {
-                    this.ParentForm.Hide();
-                }
+                this.ParentForm.Hide();
                 newForm.ShowDialog();
                 this.ParentForm.Show();
                 this.Show();

@@ -72,7 +72,7 @@ namespace AP1_GSB_DINH
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(678, 151);
             this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.D1CellFormatting);
             // 
             // dataGridView2
             // 
@@ -87,7 +87,7 @@ namespace AP1_GSB_DINH
             this.dataGridView2.RowTemplate.Height = 28;
             this.dataGridView2.Size = new System.Drawing.Size(678, 151);
             this.dataGridView2.TabIndex = 15;
-            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
+            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.D2CellFormatting);
             // 
             // ForfaitBt
             // 

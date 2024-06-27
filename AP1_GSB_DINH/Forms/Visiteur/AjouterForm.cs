@@ -78,8 +78,7 @@ namespace AP1_GSB_DINH
         {
             AjoutHorsForfait newForm = new AjoutHorsForfait(idUser);
             this.Hide();
-            if (this.ParentForm != null)
-                this.ParentForm.Hide();
+            this.ParentForm.Hide();
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();
@@ -90,17 +89,14 @@ namespace AP1_GSB_DINH
         {
             AjouterForfait newForm = new AjouterForfait(idUser);
             this.Hide();
-            if (this.ParentForm != null)
-            {
-                this.ParentForm.Hide();
-            }
+            this.ParentForm.Hide();
             newForm.ShowDialog();
             this.ParentForm.Show();
             this.Show();
             ShowData();
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D1CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "total")
             {
@@ -112,7 +108,7 @@ namespace AP1_GSB_DINH
             }
         }
 
-        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D2CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView2.Columns[e.ColumnIndex].Name == "montant")
             {

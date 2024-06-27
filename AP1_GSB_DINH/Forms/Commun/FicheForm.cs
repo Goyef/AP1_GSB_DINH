@@ -98,7 +98,7 @@ namespace AP1_GSB_DINH
             }
         }
 
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D1CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "total")
             {
@@ -110,7 +110,7 @@ namespace AP1_GSB_DINH
             }
         }
 
-        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D2CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView2.Columns[e.ColumnIndex].Name == "montant")
             {
@@ -122,7 +122,7 @@ namespace AP1_GSB_DINH
             }
         }
 
-        private void dataGridView3_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D3CellFormating(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView3.Columns[e.ColumnIndex].Name == "montant")
             {

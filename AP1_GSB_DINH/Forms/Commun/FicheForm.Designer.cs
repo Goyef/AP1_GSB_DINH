@@ -78,7 +78,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.Size = new System.Drawing.Size(294, 157);
             this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.D1CellFormatting);
             // 
             // MoisLabel
             // 
@@ -121,7 +121,7 @@
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.Size = new System.Drawing.Size(265, 157);
             this.dataGridView2.TabIndex = 18;
-            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
+            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.D2CellFormatting);
             // 
             // SumLabel
             // 
@@ -144,7 +144,7 @@
             this.dataGridView3.RowHeadersWidth = 62;
             this.dataGridView3.Size = new System.Drawing.Size(202, 54);
             this.dataGridView3.TabIndex = 20;
-            this.dataGridView3.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView3_CellFormatting);
+            this.dataGridView3.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.D3CellFormating);
             // 
             // AnneeLabel
             // 

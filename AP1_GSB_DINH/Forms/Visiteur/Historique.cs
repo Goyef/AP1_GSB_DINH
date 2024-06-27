@@ -54,13 +54,12 @@ namespace AP1_GSB_DINH
                 }
             }
         }
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void D1CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "montant")
             {
                 {
-                    string value = e.Value.ToString();
-                    value = value + " €";
+                    string value = e.Value.ToString() + " €";
 
                     e.Value = value;
                 }
@@ -77,10 +76,7 @@ namespace AP1_GSB_DINH
                 string dateC = dataGridView1.Rows[rowIndex].Cells["annee_mois"].Value.ToString();
                 FicheForm newForm = new FicheForm(0, id, dateC);
                 this.Hide();
-                if (this.ParentForm != null)
-                {
-                    this.ParentForm.Hide();
-                }
+                this.ParentForm.Hide();
                 newForm.ShowDialog();
                 this.ParentForm.Show();
                 this.Show();

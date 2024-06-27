@@ -68,10 +68,10 @@
             // ConsulterBt
             // 
             this.ConsulterBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ConsulterBt.Location = new System.Drawing.Point(4, 254);
+            this.ConsulterBt.Location = new System.Drawing.Point(2, 254);
             this.ConsulterBt.Margin = new System.Windows.Forms.Padding(2);
             this.ConsulterBt.Name = "ConsulterBt";
-            this.ConsulterBt.Size = new System.Drawing.Size(95, 40);
+            this.ConsulterBt.Size = new System.Drawing.Size(97, 40);
             this.ConsulterBt.TabIndex = 2;
             this.ConsulterBt.Text = "Consulter page actuelle";
             this.ConsulterBt.UseVisualStyleBackColor = true;
@@ -141,10 +141,10 @@
             // AjouterBt
             // 
             this.AjouterBt.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AjouterBt.Location = new System.Drawing.Point(4, 170);
+            this.AjouterBt.Location = new System.Drawing.Point(2, 170);
             this.AjouterBt.Margin = new System.Windows.Forms.Padding(2);
             this.AjouterBt.Name = "AjouterBt";
-            this.AjouterBt.Size = new System.Drawing.Size(95, 40);
+            this.AjouterBt.Size = new System.Drawing.Size(97, 40);
             this.AjouterBt.TabIndex = 3;
             this.AjouterBt.Text = "Ajouter frais";
             this.AjouterBt.UseVisualStyleBackColor = true;
